@@ -1,0 +1,88 @@
+{/****VARIABLES FOR MEL BUILT-IN SYMBOLS USED IN FORM****/
+}{global F197646348_1_1 = OBSNOW("Height") ""}{global F197646348_1_2 = OBSNOW("Weight") ""}{global F197646348_1_3 = OBSNOW("Temperature") ""}{global F197646348_1_4 = OBSNOW("Temp(deg C)") ""}{global F197646348_1_5 = OBSNOW("Temp site") ""}{global F197646348_1_6 = OBSNOW("Pulse rate") ""}{global F197646348_1_7 = OBSNOW("pulse rhythm") ""}{global F197646348_1_8 = OBSNOW("O2sat(oxim)") ""}{global F197646348_1_9 = OBSNOW("BP systolic") ""}{global F197646348_1_10 = OBSNOW("BP diastolic") ""}{global F197646348_1_11 = OBSNOW("Resp rate") ""}{/*Function Definition Defined by Item #599666*/
+fn procare()
+   {
+    // -----------------------------------------------------------------
+    //
+    // This MEL function is used to invoke the ProCare.exe program
+    // which will read the vitals data from the ProCare monitor and
+    // return the data into iStr in the following format:
+    //
+    // ver|date|time|pid|temp|units|pulse|systolic|diastolic|spo2|errmsg|
+    //
+    // For example:
+    //
+    //     V1|05/21/2003|13:21:53|PATID-032143|98.3|F|65|120|80|98||
+    //
+    // -----------------------------------------------------------------
+
+    // Invoke the ProCare.exe program to read the monitor and return a
+    // set of vitals data for processing.
+    local iStr = runtextprocess("procare", "/i " + PATIENT.PATIENTID)
+
+    // Parse the input string and separate the fields into an array
+    local iary = getfield(iStr, "|", "")
+
+    // Create a patient name string for later use in reporting information
+    local pnam = PATIENT.FIRSTNAME +" "+ PATIENT.MIDDLENAME +" "+ PATIENT.LASTNAME
+
+    // Save the Temperature Unit (F or C) into a global. It is checked in
+    // other parts of this form to determine the display of hidden fields 
+    if iary[6] <> "" then
+       TmpType = iary[6]
+    endif
+
+    // If no data came in then there was some kind of error. Set all values
+    // to NULL and store the appropriate error message which gets displayed
+    // in the "Information" window of the form.
+    if iStr == "" then
+       PCDlg = "No data returned. Check ProCare.ini and logfile to ensure proper setup."
+    else
+       // Validate the incoming patient ID. Since we provided it as an argument
+       // to the ProCare.exe program, it should match the current patient.
+       if iary[4] <> PATIENT.PATIENTID then
+          OBSNOW("Temperature", "")
+          OBSNOW("Pulse rate", "")
+          OBSNOW("BP systolic", "")
+          OBSNOW("BP diastolic", "")
+          OBSNOW("O2sat(oxim)", "")
+          PCDlg = "Incoming Patient ID (" + iary[4] + ") doesn't match current patient " + pnam + " (" +  PATIENT.PATIENTID + ")"
+       else
+          // Any zero values get reset to NULL. Otherwise set the appropriate
+          // vital from it's corresponding incoming array value.
+          if iary[5] == "" OR iary[5] == "00.0", OBSNOW("Temperature", ""),
+             if iary[6] <> "C", OBSNOW("Temperature", iary[5]),
+                OBSNOW("Temp(deg C)", iary[5])
+          if iary[7] == "" OR iary[7] == "0", OBSNOW("Pulse rate", ""),
+             OBSNOW("Pulse rate",   iary[7])
+          if iary[8] == "" OR iary[8] == "0", OBSNOW("BP systolic", ""),
+             OBSNOW("BP systolic",  iary[8])
+          if iary[9] == "" OR iary[9] == "0", OBSNOW("BP diastolic", ""),
+             OBSNOW("BP diastolic", iary[9])
+          if iary[10] == "" OR iary[10] == "0", OBSNOW("O2sat(oxim)", ""),
+             OBSNOW("O2sat(oxim)",  iary[10])
+
+          // If all incoming values are NULL, then we didn't get a proper read
+          // If we did get a good read, say so in the Information window followed
+          // by any text coming in through the errmsg field.
+          if iary[5] == "" AND iary[7] == "" AND iary[8] == "" AND iary[9] == "" AND iary[10] == "" then
+             PCDlg = iary[11]
+          else
+             PCDlg  = iary[3] + " - Vitals read from ProCare monitor"
+             if iary[11] <> "" then
+                PCDlg = fmt(PCDlg + "\r\n" + iary[11], "")
+             endif
+          endif
+       endif
+    endif
+
+    // Copy the output text to the temp variable for posting to the note
+    DOCUMENT.TEMP_235941949_1_601409 = PCDlg
+   }
+
+
+}{/****START OF FORM TRANSLATION BODY****/
+}{IF STR(DOCUMENT.TEMP_235941949_1_601409, F197646348_1_11, F197646348_1_10, F197646348_1_9, F197646348_1_8, F197646348_1_7, F197646348_1_6, F197646348_1_5, F197646348_1_4, F197646348_1_3, F197646348_1_2, F197646348_1_1) == "" THEN "" ELSE ("
+" + str(FMT("Vital Signs ", "B,2")) + "
+") ENDIF}{CFMT(F197646348_1_1, "B", "Ht: ", "", " in. ")}{cfmt(F197646348_1_2, "B", "Wt: ", "", " lbs.  ")}{cfmt(F197646348_1_3, "B", "T: ", "", " deg F.  ")}{cfmt(F197646348_1_4, "B", "T: ", "", " deg C.  ")}{cfmt(F197646348_1_5, "B", "T site: ", "", "  ")}{cfmt(F197646348_1_6, "B", "P: ", "", "  ")}{cfmt(F197646348_1_7, "B", "Rhythm: ", "", "  ")}{CFMT(F197646348_1_8, "B", "SpO2: ", "", "%   ")}{cfmt(F197646348_1_9, "B", "BP: ")}{cfmt(F197646348_1_10, "B", "/", "B", "  ")}{cfmt(F197646348_1_11, "B", "R: ", "", "  ")}{CFMT(DOCUMENT.TEMP_235941949_1_601409, "", "\r\nInformation: ", "B", "
+")}

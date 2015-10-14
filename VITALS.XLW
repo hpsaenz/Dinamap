@@ -1,0 +1,9 @@
+{
+
+/****WATCHER EXPRESSIONS****/
+
+}{/*Watcher Expression Defined by Item #600775*/
+!global PCDlg  = ""
+  global TmpType = "F" 
+
+}

@@ -1,0 +1,39 @@
+CLINICAL KIT: C:\PROCARE\PCVITALS\VITALS.ckt
+   FORM NAME: Vital signs (ProCare)
+
+
+This form uses the following observation terms:
+
+Short Name         Description
+----------         ---------
+BP diastolic       blood pressure, diastolic
+BP systolic        blood pressure, systolic
+Height             height
+O2sat(oxim)        oxygen saturation, oximetry
+Pulse rate         pulse rate
+pulse rhythm       pulse rhythm
+Resp rate          respiratory rate
+Temp site          temperature site
+Temp(deg C)        temperature in centigrade
+Temperature        temperature
+Weight             weight
+
+
+This form uses the following observation terms not included in your Encounter Form Editor:
+
+<<NONE>>
+
+
+This form uses the following flowsheet views:
+
+<<NONE>>
+
+
+This form uses the following problem custom lists:
+
+<<NONE>>
+
+
+This form uses the following medication custom lists:
+
+<<NONE>>
