@@ -1,4 +1,4 @@
-{global F639661234_196_1 = OBSNOW("Height") ""}{global F639661234_196_2 = OBSNOW("Weight") ""}{global F639661234_196_3 = OBSNOW("Temperature") ""}{global F639661234_196_4 = OBSNOW("Temp(deg C)") ""}{global F639661234_196_5 = OBSNOW("Temp site") ""}{global F639661234_196_6 = OBSNOW("Pulse rate") ""}{global F639661234_196_7 = OBSNOW("pulse rhythm") ""}{global F639661234_196_8 = OBSNOW("O2sat(oxim)") ""}{global F639661234_196_9 = OBSNOW("BP systolic") ""}{global F639661234_196_10 = OBSNOW("BP diastolic") ""}{global F639661234_196_11 = OBSNOW("Resp rate") ""}{fn procare()
+{global F639669806_196_1 = OBSNOW("Height") ""}{global F639669806_196_2 = OBSNOW("Weight") ""}{global F639669806_196_3 = OBSNOW("Temperature") ""}{global F639669806_196_4 = OBSNOW("Temp(deg C)") ""}{global F639669806_196_5 = OBSNOW("Temp site") ""}{global F639669806_196_6 = OBSNOW("Pulse rate") ""}{global F639669806_196_7 = OBSNOW("pulse rhythm") ""}{global F639669806_196_8 = OBSNOW("O2sat(oxim)") ""}{global F639669806_196_9 = OBSNOW("BP systolic") ""}{global F639669806_196_10 = OBSNOW("BP diastolic") ""}{global F639669806_196_11 = OBSNOW("Resp rate") ""}{fn procare()
    {
     // -----------------------------------------------------------------
     //
@@ -79,8 +79,8 @@
    }
 
 
-}{IF STR(DOCUMENT.TEMP_235941949_1_601409, F639661234_196_11, F639661234_196_10, F639661234_196_9, F639661234_196_8, F639661234_196_7, F639661234_196_6, F639661234_196_5, F639661234_196_4, F639661234_196_3, F639661234_196_2, F639661234_196_1) == "" THEN "" ELSE ("
+}{IF STR(DOCUMENT.TEMP_235941949_1_601409, F639669806_196_11, F639669806_196_10, F639669806_196_9, F639669806_196_8, F639669806_196_7, F639669806_196_6, F639669806_196_5, F639669806_196_4, F639669806_196_3, F639669806_196_2, F639669806_196_1) == "" THEN "" ELSE ("
 " + str(FMT("Vital Signs ", "B,2")) + "
-") ENDIF}{CFMT(F639661234_196_1, "B", "Ht: ", "", " in. ")}{cfmt(F639661234_196_2, "B", "Wt: ", "", " lbs.  ")}{cfmt(F639661234_196_3, "B", "T: ", "", " deg F.  ")}{cfmt(F639661234_196_4, "B", "T: ", "", " deg C.  ")}{cfmt(F639661234_196_5, "B", "T site: ", "", "  ")}{cfmt(F639661234_196_6, "B", "P: ", "", "  ")}{cfmt(F639661234_196_7, "B", "Rhythm: ", "", "  ")}{CFMT(F639661234_196_8, "B", "SpO2: ", "", "%   ")}{cfmt(F639661234_196_9, "B", "BP: ")}{cfmt(F639661234_196_10, "B", "/", "B", "  ")}{cfmt(F639661234_196_11, "B", "R: ", "", "  ")}{CFMT(DOCUMENT.TEMP_235941949_1_601409, "", "\r\nInformation: ", "B", "
+") ENDIF}{CFMT(F639669806_196_1, "B", "Ht: ", "", " in. ")}{cfmt(F639669806_196_2, "B", "Wt: ", "", " lbs.  ")}{cfmt(F639669806_196_3, "B", "T: ", "", " deg F.  ")}{cfmt(F639669806_196_4, "B", "T: ", "", " deg C.  ")}{cfmt(F639669806_196_5, "B", "T site: ", "", "  ")}{cfmt(F639669806_196_6, "B", "P: ", "", "  ")}{cfmt(F639669806_196_7, "B", "Rhythm: ", "", "  ")}{CFMT(F639669806_196_8, "B", "SpO2: ", "", "%   ")}{cfmt(F639669806_196_9, "B", "BP: ")}{cfmt(F639669806_196_10, "B", "/", "B", "  ")}{cfmt(F639669806_196_11, "B", "R: ", "", "  ")}{CFMT(DOCUMENT.TEMP_235941949_1_601409, "", "\r\nInformation: ", "B", "
 ")}
 

@@ -1,29 +1,4 @@
-
-{FMT("Vital Signs ", "B,2")}
-{FMT("Height: ", "B")}{IF OBSNOW("Height") = "" THEN FMT(".          .", "B,U") ELSE FMT(OBSNOW("Height"), "B,U") ENDIF}
-{fmt("Weight (lbs): ", "B")}{IF OBSNOW("Weight") = "" THEN fmt(".          .", "B,U") ELSE fmt(OBSNOW("Weight"), "B,U") ENDIF}{fmt("Temperature: ", "B")}
-{IF OBSNOW("Temperature") = "" THEN
-   fmt(".          .", "B,U")
- ELSE
-   fmt(OBSNOW("Temperature"), "B,U")
- ENDIF
-}{fmt("Temperature: ", "B")}
-{IF OBSNOW("Temp(deg C)") = "" THEN
-   fmt(".          .", "B,U")
- ELSE
-   fmt(OBSNOW("Temp(deg C)"), "B,U")
- ENDIF
-}{fmt("Pulse rate: ", "B")}{IF OBSNOW("Pulse rate") = "" THEN fmt(".          .", "B,U") ELSE fmt(OBSNOW("Pulse rate"), "B,U") ENDIF}{FMT("SpO2: ", "B")}
-{IF OBSNOW("O2sat(oxim)") = "" THEN
-   FMT(".          .", "B,U")
-ELSE
-   FMT(OBSNOW("O2sat(oxim)"), "B,U")
-ENDIF}{fmt("Blood pressure (mm Hg): ", "B")}{IF OBSNOW("BP systolic") = "" THEN fmt(".          .", "B,U") ELSE fmt(OBSNOW("BP systolic"), "B,U") ENDIF}/{IF OBSNOW("BP diastolic") = "" THEN 
-     fmt(".          .", "B,U")
-  ELSE
-     fmt(OBSNOW("BP diastolic"), "B,U")
-  ENDIF
- }{fmt("Respirations: ", "B")}{IF OBSNOW("Resp rate") = "" THEN fmt(".          .", "B,U") ELSE fmt(OBSNOW("Resp rate"), "B,U") ENDIF}{FMT("\r\nInformation: ", "B")}{IF DOCUMENT.TEMP_235941949_1_601409 = "" THEN FMT(".          .", "B,U") ELSE FMT(DOCUMENT.TEMP_235941949_1_601409, "B,U") ENDIF}
+{FMT("\r\nInformation: ", "B")}{IF DOCUMENT.TEMP_235941949_1_601409 = "" THEN FMT(".          .", "B,U") ELSE FMT(DOCUMENT.TEMP_235941949_1_601409, "B,U") ENDIF}
 
 
 
