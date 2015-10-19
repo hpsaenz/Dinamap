@@ -11,7 +11,7 @@ V 1
 GroupBoxTemplate  8 4 461 256 [2]
 LabelFieldTemplate 12 8 457 24 [Vital Signs][1][][0][4102][Arial:10:B][16711680][][1][0][]
 LabelFieldTemplate 12 28 457 44 [][1][][0][4102][Arial:8:][0][][1][0][]
-LabelFieldTemplate 12 48 100 64 [Height:][1][][0][4102][Arial:8:][0][][5][0][]
+LabelFieldTemplate 12 48 100 64 [Height(HS):][1][][0][4102][Arial:8:][0][][5][0][]
 EditFieldTemplate 100 48 148 64 [OBSNOW][][0][][][pos_real][0][][14][Arial:8:][0][16777215][1][1][][5][0][Height]
 LabelFieldTemplate 156 48 220 64 [inches][1][][0][4102][Arial:8:][0][][1][0][]
 LabelFieldTemplate 228 48 316 64 [Weight:][1][][0][4102][Arial:8:][0][][5][0][]
