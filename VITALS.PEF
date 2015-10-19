@@ -13,7 +13,7 @@
  ELSE
    fmt(OBSNOW("Temp(deg C)"), "B,U")
  ENDIF
-}{fmt("Temperature site: ", "B")}{cfmt(OBSNOW("Temp site"), "B,U")}  ( )oral  ( )rectal  ( )axillary  ( )tympanic{fmt("Pulse rate: ", "B")}{IF OBSNOW("Pulse rate") = "" THEN fmt(".          .", "B,U") ELSE fmt(OBSNOW("Pulse rate"), "B,U") ENDIF}{fmt("Pulse rhythm: ", "B")}{cfmt(OBSNOW("pulse rhythm"), "B,U")}  ( )regular  ( )irregular  ( )irreg. irregular  ( )alternans  ( )bigeminal  ( )tardus  ( ){fmt(".          .","B,U")}{FMT("SpO2: ", "B")}
+}{fmt("Pulse rate: ", "B")}{IF OBSNOW("Pulse rate") = "" THEN fmt(".          .", "B,U") ELSE fmt(OBSNOW("Pulse rate"), "B,U") ENDIF}{FMT("SpO2: ", "B")}
 {IF OBSNOW("O2sat(oxim)") = "" THEN
    FMT(".          .", "B,U")
 ELSE
